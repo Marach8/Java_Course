@@ -1,15 +1,29 @@
 package Java_Course;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 
 public class Hello {
-    public static void main(String [] args) throws IOException {
+    public static void main(String [] args) {
+        Runnable runnable1 = () -> {
+            for(int i = 0; i < 5; i++){
+                System.out.println("Marach");
+                try{
+                    Thread.sleep(10);
+                } catch(Exception e){}
+            }
+        };
 
-        final InputStreamReader reader = new InputStreamReader(System.in);
-        final BufferedReader bufferedReader = new BufferedReader(reader);
-        final var name = bufferedReader.readLine();
-        String fullName = "Your name is " + name;
-        System.out.println(fullName);
+        Runnable runnable2 = () -> {
+            for(int i = 0; i < 5; i++) {
+                System.out.println("Emmanuel");
+                try{
+                    Thread.sleep(10);
+                } catch(Exception e){}
+            }
+        };
+
+        Thread thread1 = new Thread(runnable1);
+        Thread thread2 = new Thread(runnable2);
+
+        thread1.start();
+        thread2.start();
     }
 }
